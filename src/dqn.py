@@ -21,7 +21,7 @@ class DQN(nn.Module):
         return self.fc3(x)
 
 
-def train_dqn(env, episodes=500, gamma=0.99, epsilon_start=1.0, epsilon_end=0.01, epsilon_decay=0.995, batch_size=64, lr=1e-3):
+def train_dqn(env, episodes=500, gamma=0.99, epsilon_start=1.0, epsilon_end=0.01, epsilon_decay=0.995, batch_size=64, lr=1e-3, visualization_start=0, visualization_end=10):
     state_dim = env.observation_space.shape[0]
     action_dim = env.action_space.n
     policy_net = DQN(state_dim, action_dim)
@@ -44,8 +44,8 @@ def train_dqn(env, episodes=500, gamma=0.99, epsilon_start=1.0, epsilon_end=0.01
 
     import gymnasium as gym
     for episode in range(episodes):
-        # Use rendering env for first 10 episodes, else use non-rendering env
-        if episode < 10:
+        # Use rendering env for episodes in visualization range, else use non-rendering env
+        if visualization_start <= episode < visualization_end:
             ep_env = gym.make('CartPole-v1', render_mode='human')
         else:
             ep_env = gym.make('CartPole-v1')
