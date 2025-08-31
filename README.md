@@ -15,15 +15,24 @@ This project demonstrates reinforcement learning on the CartPole environment usi
 	source .venv/bin/activate
 	```
 
+
 ## Usage
 
-To run DQN training and visualize CartPole for selected episodes:
+### DQN Training
+Run DQN training and visualize CartPole for selected episodes:
 
 ```bash
 python src/run_dqn.py --visualization_start 5 --visualization_end 15
 ```
-
 This will show CartPole visualization for episodes 5 to 14. Adjust the parameters as needed.
+
+### Policy Gradient Training
+Run policy gradient training and visualize CartPole for selected episodes:
+
+```bash
+python src/run_policy_gradient.py --episodes 300 --visualization_start 5 --visualization_end 15
+```
+You can also set `--gamma` and `--lr` for discount factor and learning rate.
 
 ## Project Structure
 
